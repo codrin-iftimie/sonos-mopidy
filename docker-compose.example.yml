@@ -1,0 +1,24 @@
+---
+version: "2.1"
+services:
+  mopidy:
+    image: sonos-mopidy
+    network_mode: host
+    depends_on:
+      - iris
+    environment:
+      - DOWNLOAD_PATH=/downloads
+      - SONOS_DEVICE=192.168.1.9
+      - MOPIDY_URL=localhost
+      - HOSTNAME=192.168.1.64
+    ports:
+      - 6681:6681
+    volumes:
+      - /srv/7edeffcf-0ef0-4831-8e36-2c253fb4a0cf/shared/media/music/ytdownload:/downloads
+    restart: unless-stopped
+  iris:
+    container_name: iris
+    image: sonos-iris
+    ports:
+      - 6680:6680
+    restart: unless-stopped
