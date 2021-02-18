@@ -7,6 +7,6 @@ RUN mkdir -p /downloads
 
 COPY . /app
 
-RUN cd /app && npm ci
+RUN cd /app && YOUTUBE_DL_DOWNLOAD_HOST=http://yt-dl.org/downloads/latest/youtube-dl npm ci
 
 CMD node /app/index.js
